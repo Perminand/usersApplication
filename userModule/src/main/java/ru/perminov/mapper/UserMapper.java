@@ -1,4 +1,4 @@
-package ru.perminov.mappers;
+package ru.perminov.mapper;
 
 import ru.perminov.dto.UserDtoIn;
 import ru.perminov.dto.UserDtoOut;

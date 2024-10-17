@@ -1,12 +1,13 @@
-package ru.perminov.services;
+package ru.perminov.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.perminov.dto.UserDtoIn;
 import ru.perminov.dto.UserDtoOut;
-import ru.perminov.mappers.UserMapper;
+import ru.perminov.mapper.UserMapper;
 import ru.perminov.model.User;
 import ru.perminov.repositoty.UserRepository;
 
@@ -15,11 +16,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserDtoOut> getAll() {
         return userRepository.findAll().stream()
                 .map(UserMapper::toDto)
@@ -27,9 +30,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDtoOut getById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден ид: " + id));
+        User user = getUser(id);
         return UserMapper.toDto(user);
     }
 
