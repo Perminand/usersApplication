@@ -1,9 +1,8 @@
 package ru.perminov.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import ru.perminov.marker.Create;
+import ru.perminov.dto.marker.Create;
 
 @Getter
 @Setter

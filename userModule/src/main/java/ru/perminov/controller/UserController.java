@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.perminov.dto.RoleDto;
 import ru.perminov.dto.UserDtoIn;
 import ru.perminov.dto.UserDtoOut;
+import ru.perminov.service.UserRoleService;
 import ru.perminov.service.UserService;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
 @Validated
 public class UserController {
     private final UserService userService;
+    private final UserRoleService userRoleService;
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserDtoOut> getAll() {
@@ -54,5 +57,28 @@ public class UserController {
     public void delete(@PathVariable @Positive Long id) {
         log.info("Пришел DELETE запрос на удаление пользователя ид: {}", id);
         userService.deleteById(id);
+    }
+
+    @GetMapping("/{id}/roles")
+    @ResponseStatus(HttpStatus.OK)
+    public List<RoleDto> getRoleByUserId(@PathVariable @Positive Long id) {
+        log.info("Пришел GET запрос на получений всех ролей пользователя ид: {}", id);
+        return userRoleService.getUserRole(id);
+    }
+
+    @PostMapping("/{userId}/roles/{roleId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<RoleDto> addRoleByUser(@PathVariable @Positive Long userId,
+                                       @PathVariable @Positive Long roleId) {
+        log.info("Пришел POST запрос на добавлении роли пользователю ид: {}", userId);
+        return userRoleService.addRoleByUser(userId, roleId);
+    }
+
+    @DeleteMapping("/{userId}/roles/{roleId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<RoleDto> deleteRoleByUser(@PathVariable @Positive Long userId,
+                                       @PathVariable @Positive Long roleId) {
+        log.info("Пришел DELETE запрос на удалении роли пользователю ид: {}", userId);
+        return userRoleService.deleteRoleByUser(userId, roleId);
     }
 }

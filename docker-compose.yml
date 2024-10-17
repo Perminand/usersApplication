@@ -9,6 +9,16 @@ services:
       - SPRING_DATASOURCE_USERNAME=users
       - SPRING_DATASOURCE_PASSWORD=users
 
+  roles:
+    build: roleModule
+    container_name: role
+    ports:
+      - "9091:9090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://users-db:5432/users
+      - SPRING_DATASOURCE_USERNAME=users
+      - SPRING_DATASOURCE_PASSWORD=users
+
   users-db:
     image: postgres:16.1
     container_name: usersDb

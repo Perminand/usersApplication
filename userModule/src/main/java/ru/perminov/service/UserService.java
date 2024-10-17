@@ -1,5 +1,6 @@
 package ru.perminov.service;
 
+import ru.perminov.dto.RoleDto;
 import ru.perminov.dto.UserDtoIn;
 import ru.perminov.dto.UserDtoOut;
 
@@ -16,4 +17,4 @@ public interface UserService {
 
     void deleteById(Long id);
 
-}
+   }

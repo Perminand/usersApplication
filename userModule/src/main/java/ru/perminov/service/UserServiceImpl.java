@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.perminov.dto.RoleDto;
 import ru.perminov.dto.UserDtoIn;
 import ru.perminov.dto.UserDtoOut;
 import ru.perminov.mapper.UserMapper;
@@ -17,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserRoleService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -67,6 +68,27 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Long id) {
         getUser(id);
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<RoleDto> getUserRole(Long userId) {
+        getUser(userId);
+        List<RoleDto> roleDtoList = userRepository.getRolesById(userId);
+        return roleDtoList;
+    }
+
+    @Override
+    public List<RoleDto> addRoleByUser(Long userId, Long roleId) {
+        getUser(userId);
+        userRepository.addRoleByUser(userId, roleId);
+        return getUserRole(userId);
+    }
+
+    @Override
+    public List<RoleDto> deleteRoleByUser(Long userId, Long roleId) {
+        getUser(userId);
+        userRepository.deleteRoleByUser(userId, roleId);
+        return getUserRole(userId);
     }
 
     private User getUser (Long id) {
