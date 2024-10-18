@@ -7,6 +7,7 @@ import ru.perminov.marker.Create;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDtoIn {
