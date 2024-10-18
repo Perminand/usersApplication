@@ -71,6 +71,11 @@ public class UserServiceImpl implements UserService, UserRoleService {
     }
 
     @Override
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
+    @Override
     public List<RoleDto> getUserRole(Long userId) {
         getUser(userId);
         List<RoleDto> roleDtoList = userRepository.getRolesById(userId);

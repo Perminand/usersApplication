@@ -52,7 +52,7 @@ public class RoleController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteById(@PathVariable @Positive Long id) {
         log.info("Пришел DELETE запрос на удаление роли ид: {}", id);
-        roleService.delete(id);
+        roleService.deleteById(id);
     }
 
 }
