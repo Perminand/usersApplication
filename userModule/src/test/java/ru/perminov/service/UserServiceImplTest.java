@@ -50,7 +50,7 @@ class UserServiceImplTest {
 
     void getByIdFail() {
         Assertions.assertThrows(EntityNotFoundException.class, () -> {
-            userService.getById(Long.valueOf(userService.getAll().size() + 1));
+            userService.getById((long) (userService.getAll().size() + 1));
         });
         Assertions.assertThrows(EntityNotFoundException.class, () -> {
             userService.getById(-1L);

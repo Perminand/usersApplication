@@ -16,8 +16,8 @@
     <modules>
         <module>userModule</module>
         <module>roleModule</module>
-        <module>roleModule</module>
         <module>dto</module>
+        <module>fireWall</module>
     </modules>
 
     <properties>
