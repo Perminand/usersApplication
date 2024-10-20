@@ -1,3 +1,5 @@
+server:
+  port: 9090
 spring:
   security:
     user:
@@ -21,3 +23,6 @@ spring:
   sql:
     init:
       mode: always
+userApp:
+  server:
+    url: http://localhost:9090

@@ -1,12 +1,9 @@
-package ru.perminov.model;
+package ru.perminov.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -27,8 +24,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Transient
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     private LocalDateTime createdAt;

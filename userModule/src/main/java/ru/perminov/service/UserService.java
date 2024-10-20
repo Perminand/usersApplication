@@ -1,7 +1,7 @@
 package ru.perminov.service;
 
-import ru.perminov.dto.UserDtoIn;
-import ru.perminov.dto.UserDtoOut;
+import ru.perminov.dto.user.UserDtoIn;
+import ru.perminov.dto.user.UserDtoOut;
 
 import java.util.List;
 

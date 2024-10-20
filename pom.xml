@@ -17,7 +17,7 @@
         <module>userModule</module>
         <module>roleModule</module>
         <module>dto</module>
-        <module>fireWall</module>
+        <module>gateway</module>
     </modules>
 
     <properties>

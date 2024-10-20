@@ -1,9 +1,8 @@
-package ru.perminov.dto;
+package ru.perminov.dto.user;
 
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter

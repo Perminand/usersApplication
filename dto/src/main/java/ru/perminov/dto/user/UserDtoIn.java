@@ -1,9 +1,9 @@
-package ru.perminov.dto;
+package ru.perminov.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import ru.perminov.marker.Create;
+import ru.perminov.dto.marker.Create;
 
 @Getter
 @Setter

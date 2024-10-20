@@ -1,18 +1,15 @@
 package ru.perminov.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.perminov.model.User;
-import ru.perminov.service.UserService;
+import ru.perminov.models.User;
+import ru.perminov.services.AppService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 @AllArgsConstructor
-public class AuthController {
-
-    @Autowired
-    private UserService userService;
+public class SecurityController {
+    private AppService service;
 
     @GetMapping("/welcome")
     public String welcome(){
@@ -22,7 +19,7 @@ public class AuthController {
 
     @PostMapping("/new-user")
     public String addUser(@RequestBody User user) {
-        userService.addUser(user);
+        service.addUser(user);
         return "User is saved";
     }
 }

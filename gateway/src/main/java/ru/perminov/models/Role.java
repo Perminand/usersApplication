@@ -1,4 +1,4 @@
-package ru.perminov.model;
+package ru.perminov.models;
 
 import jakarta.persistence.*;
 import lombok.*;
